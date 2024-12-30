@@ -1,0 +1,63 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box
+}
+
+body{
+  min-height: 100vh;
+  background-color: #6c6c6c
+}
+
+.banner{
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background-color: blue;
+}
+
+.product{
+  width:500px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  transform:translateX(-50%);
+  background-color: red;
+  z-index: 2;
+  transition: 0.7s;
+  bottom: 10%;
+  --left:0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.soda{
+  background:
+  url(assets/gb1.png) var(--left) 0,
+  url(assets/can-mockup.png);
+  background-size: auto 100%; 
+  /*se usa para especificar cómo se debe escalar una imagen de fondo dentro de su contenedor*/
+  /* auto (primer valor): Este valor significa que el ancho de la imagen de 
+  fondo no se escala, es decir, la imagen se mantiene en su tamaño original 
+  en el eje horizontal. La imagen se ajusta automáticamente al ancho del 
+  contenedor, sin deformarse.
+  100% (segundo valor): En el eje vertical (eje Y), la imagen se escala para
+  que ocupe el 100% de la altura del contenedor. Es decir, la altura de la 
+  imagen de fondo se ajustará para que coincida exactamente con la altura
+  del contenedor, manteniendo la proporción de aspecto en el eje vertical. */
+  width: 390px;
+  aspect-ratio: 5/6;
+  background-blend-mode: multiply;
+  mask-image: url(assets/can-mockup.png);
+  mask-size: auto 100%;
+  transition: 2s;
+}
+
+.product:hover{
+  --left:-500px;
+  bottom: 15%;
+}

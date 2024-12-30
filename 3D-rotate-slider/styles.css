@@ -1,0 +1,75 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color:rgb(110, 110, 110);
+  background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+}
+
+.banner{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.banner .slider{
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 10%;
+  left: calc(50% - 100px); /** el método calc() lo empleamos para usar cálculos matemáticos dentro de CSS*/
+  /* left: calc(50% - 100px) es una forma común de centrar horizontalmente un 
+  elemento con un ancho fijo.
+  (-100px)Este ajuste compensa la mitad del ancho del elemento, en este caso, 200px / 2 = 100px, 
+  para que el elemento quede perfectamente centrado */
+  transform-style: preserve-3d; /** le estamos diciendo "añade el eje z" para tener el 3D*/
+  transform: perspective(1000px);/** "el eje Z una distancia de 1000px"*/
+  /* transform-style: preserve-3d; y transform: perspective(1000px); son parte 
+  del sistema de transformaciones 3D en CSS y se usan para crear y 
+  controlar efectos tridimensionales */
+  animation: autoRun 20s linear infinite; 
+  /*! como el slider contiene a todos los items, en vez de hacer una animación para cada item movemos solo el slicer */
+  z-index: 3;
+}
+
+@keyframes autoRun{
+  from{
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg)
+  }to{
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item{
+  position: absolute;
+  inset: 0 0 0 0;
+  /* La propiedad inset en CSS es un atajo para definir los valores de las 
+  propiedades de posición top, right, bottom y left. Cuando utilizas 
+  inset: 0 0 0 0;, estás configurando todas esas propiedades a la vez. */
+  transform: 
+    rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))/** empleamos las variables de estilo CSS (style) que pusimos en el html para hacer el cáculo de la distancia entre objetos*/
+    /*! calc() es muy sensible a la escritura, como no des espacio entre operadores y valores no funciona*/
+    translateZ(500px); /** "desplaza el objeto 550px en el eje Z"*/
+}
+
+.banner .slider .item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner .content{
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  padding: 15px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+  font-size: 6em;
+  color: rgb(29, 29, 29);
+}
+
